@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="index.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;700&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <title>RegAuth</title>
+  </head>
+  <body>
+    <main>
+      <div class="main-left">
+        <div class="main-left-brand">
+          <h1 class="fluid font-varela">RegAuth</h1>
+        </div>
+        <div class="main-left-message">
+          <h2 class="font-varela fluid">Oh hello there!</h2>
+          <h1 class="font-varela fluid">WELCOME BACK</h1>
+          <div class="main-left-message-line"></div>
+          <p class="font-robo">
+            "User authentication that uses regular expressions to strengthen
+            registration security"
+          </p>
+        </div>
+        <div>
+          <footer>
+            <p class="fluid font-robo">Developed by Group 1</p>
+          </footer>
+        </div>
+      </div>
+      <div class="main-right">
+        <div id="notif">
+          <div id="notif-text">
+            <p id="notif-type" class="font-robo">ERROR:</p>
+            <p id="notif-message" class="font-robo">Passwords do not match</p>
+          </div>
+          <button id="notif-close">X</button>
+        </div>
+        <div class="form-register-container" id="register-page">
+          <div class="form-login-header">
+            <h1 id="main-right-brand" class="font-varela">RegAuth</h1>
+            <h1 class="font-mont fluid">Register Account</h1>
+            <p class="font-robo fluid">
+              Fill in your details to create your account
+            </p>
+          </div>
+          <form id="form-register">
+            <div id="form-register-info">
+              <div id="form-register-names">
+                <input
+                  type="text"
+                  name="register-fname"
+                  id="form-register-fname"
+                  class="font-robo form-input form-input-gap"
+                  placeholder="First name"
+                />
+                <input
+                  type="text"
+                  name="register-lname"
+                  id="form-register-lname"
+                  class="font-robo form-input form-input-gap"
+                  placeholder="Last name"
+                />
+              </div>
+              <div id="form-register-gender">
+                <div>
+                  <p id="form-register-gender-label" class="font-robo">
+                    Gender
+                  </p>
+                </div>
+                <div id="form-register-gender-inputs">
+                  <label for="male" class="font-robo fluid gender-label"
+                    >Male</label
+                  >
+                  <input
+                    id="male"
+                    type="radio"
+                    name="gender"
+                    value="0"
+                    style="margin-right: 1rem"
+                  />
+                  <label for="female" class="font-robo fluid gender-label"
+                    >Female</label
+                  >
+                  <input id="female" type="radio" name="gender" value="1" />
+                </div>
+              </div>
+              <input
+                type="text"
+                name="register-email"
+                id="form-register-email"
+                class="font-robo form-input form-input-gap"
+                placeholder="Email Addres"
+              />
+              <input
+                type="date"
+                name="register-date"
+                id="form-register-date"
+                class="font-robo form-input form-input-gap"
+              />
+              <input
+                type="tel"
+                name="register-contact"
+                id="form-register-contact"
+                class="font-robo form-input form-input-gap"
+                placeholder="09XX-XXX-XXXX"
+                pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"
+              />
+            </div>
+            <div id="form-register-pwds">
+              <input
+                type="password"
+                placeholder="Password"
+                name="register-password"
+                id="form-register-password"
+                class="font-robo form-input form-input-gap"
+              />
+              <input
+                type="password"
+                placeholder="Confirm password"
+                name="register-repassword"
+                id="form-register-repassword"
+                class="font-robo form-input form-input-gap"
+              />
+            </div>
+
+            <div id="form-register-next-container">
+              <button id="form-register-prev">Previous</button>
+              <button id="form-register-next">Next</button>
+              <input type="submit" id="form-register-submit" value="Register" />
+            </div>
+          </form>
+          <div class="main-link">
+            <button class="font-robo" id="main-link-btn-login">
+              Already have an account? Sign In
+            </button>
+          </div>
+        </div>
+        <div class="form-login-container" id="login-page">
+          <div class="form-login-header">
+            <h1 id="main-right-brand" class="font-varela">RegAuth</h1>
+            <h1 class="font-mont fluid">Login Account</h1>
+            <p class="font-robo fluid">
+              Login with your registered credentials
+            </p>
+          </div>
+          <form id="form-login">
+            <input
+              type="text"
+              name="login-email"
+              class="font-robo form-input form-input-gap"
+              placeholder="Enter your email"
+              id="form-login-email"
+            />
+            <input
+              type="password"
+              name="login-password"
+              class="font-robo form-input form-input-gap"
+              placeholder="Enter your password"
+              id="form-login-password"
+            />
+            <input
+              class="form-submit font-robo"
+              type="submit"
+              value="SIGN IN"
+            />
+          </form>
+          <div class="main-link">
+            <button class="font-robo" id="main-link-btn-reg">
+              No account yet? Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="index.js"></script>
+    <script src="utils/anime.min.js"></script>
+  </body>
+</html>
