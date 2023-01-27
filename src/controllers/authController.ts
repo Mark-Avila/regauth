@@ -23,6 +23,39 @@ interface IRegexList {
   Contact: string;
 }
 
+interface IPassChecks {
+  "one upper case letter": "^(?=.*?[A-Z])$";
+  "one lower case letter": "^(?=.*?[a-z])$";
+  "one digit character": "^(?=.*?[0-9])$";
+  "one special character": "^(?=.*?[#?!@$%^&*-])$";
+  "minimum of 8 characters": "^(?=.*?[#?!@$%^&*-])$";
+}
+
+const validatePasswordChars = (password: string): string => {
+  const passChecks = {
+    "one lower case letter": "^.*(?=.*?[a-z]).*$",
+    "one upper case letter": "^.*(?=.*?[A-Z]).*$",
+    "one digit character": "^.*(?=.*?[0-9]).*$",
+    "one special character": "^.*(?=.*?[#?!@$%^&*-]).*$",
+    "minimum of 8 characters": "^.{8,}.*$",
+  };
+
+  const passCheckKeys = Object.keys(passChecks);
+  let returnString = "";
+
+  passCheckKeys.forEach((key) => {
+    const regexCheck = new RegExp(passChecks[key as keyof IPassChecks]);
+
+    if (returnString.length === 0) {
+      if (!regexCheck.test(password) === true) {
+        returnString = key;
+      }
+    }
+  });
+
+  return returnString;
+};
+
 const validatePassword = (password: string, inputs: FormInputs): string[] => {
   const { fname, lname, email, bday, contact } = inputs;
 
@@ -101,9 +134,17 @@ export const registerUser = asyncHandler(
 
     const { fname, lname, contact, bday, email, password } = data;
 
+    const passCharsCheck = validatePasswordChars(password);
+    const isPassValid = passCharsCheck.length > 0;
+
     if (await Account.findOne({ email })) {
       res.status(400);
       throw Error("User already exists");
+    }
+
+    if (isPassValid) {
+      res.status(400);
+      throw Error(`Password must have ${passCharsCheck}`);
     }
 
     if (!validateEmail(email)) {

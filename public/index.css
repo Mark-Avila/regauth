@@ -1,346 +1,602 @@
 :root {
-    --primary: #4e6afa;
-    --secondary: #6727cf;
-    --secondary-hover: #752fe7;
-    --secondary-active: #9452ff;
-    --error: rgb(255, 86, 86);
-    --success: rgb(122, 220, 90);
-    --focus-out: #707070;
-    --input-border: "5px solid #6727cf";
-  }
-  
-  html {
-    height: 100%;
-  }
-  body {
-    padding: 0;
-    margin: 0;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .fluid {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .font-varela {
-    font-family: "Varela Round", Arial, Helvetica, sans-serif;
-  }
-  
-  .font-mont {
-    font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  }
-  
-  .font-robo {
-    font-family: "Roboto", Arial, Helvetica, sans-serif;
-  }
-  
-  main {
-    flex: 1;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-  }
-  
+  --primary: #4e6afa;
+  --secondary: #6727cf;
+  --secondary-hover: #752fe7;
+  --secondary-active: #9452ff;
+  --error: rgb(255, 86, 86);
+  --success: rgb(122, 220, 90);
+  --focus-out: #707070;
+  --input-border: "5px solid #6727cf";
+}
+
+html {
+  height: 100%;
+}
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.font-varela {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+}
+
+.font-mont {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+.font-robo {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.main-left {
+  width: 100%;
+  background-image: url("assets/stacked-steps-haikei.png");
+  background-size: cover;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-left-brand > h1 {
+  font-weight: bold;
+  color: white;
+}
+
+.main-left-message {
+  font-weight: bold;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.main-left-message > h1 {
+  font-size: 4rem;
+  margin-top: 1rem;
+}
+
+.main-left-message > h2 {
+  font-size: 2rem;
+}
+
+.main-left-message > p {
+  width: 20rem;
+  font-size: 0.8rem;
+}
+
+.main-left-message-line {
+  background-color: white;
+  width: 4rem;
+  height: 0.6rem;
+  border-radius: 50px;
+  margin: 1rem 0;
+}
+
+.main-right {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-login-container {
+  width: 20rem;
+  display: block;
+}
+
+.form-login-header > h1 {
+  color: var(--secondary);
+}
+
+.form-login-header > p {
+  color: gray;
+  font-size: 0.8rem;
+  margin-top: 0.7rem;
+}
+
+form {
+  margin-top: 3rem;
+}
+
+.form-input-gap {
+  margin: 0.5rem 0;
+}
+
+.form-input {
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  border: none;
+  border-left: 5px solid var(--secondary);
+  background-color: hsl(0, 0%, 95%);
+  box-sizing: border-box;
+  color: gray;
+}
+
+.form-submit {
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 2rem;
+  border: none;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 50px;
+  box-sizing: border-box;
+}
+
+.form-submit:hover {
+  cursor: pointer;
+  background-color: var(--secondary-hover);
+}
+
+.form-submit:active {
+  cursor: pointer;
+  background-color: var(--secondary-active);
+}
+
+footer > p {
+  font-size: 0.8rem;
+  color: white;
+}
+
+.main-link {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.main-link > button {
+  background: none;
+  border: none;
+  color: var(--primary);
+}
+
+.main-link > button:hover {
+  cursor: pointer;
+  color: var(--secondary-hover);
+}
+
+.main-link > button:active {
+  cursor: pointer;
+  color: var(--secondary-active);
+}
+
+.form-register-container {
+  display: none;
+  width: 20rem;
+}
+
+.gender-label {
+  font-size: 0.8rem;
+  color: var(--focus-out);
+}
+
+#form-register-gender {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+#form-register-gender-inputs {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+#form-register-gender-label {
+  color: var(--secondary);
+  font-size: 0.8rem;
+}
+
+#form-register-info {
+  display: block;
+}
+
+#form-register-names {
+  display: flex;
+  justify-content: space-between;
+}
+
+#form-register-names > #form-register-fname {
+  margin-right: 1rem;
+}
+
+#main-right-brand {
+  display: none;
+}
+
+#form-register-pwds {
+  display: none;
+}
+
+#form-register-submit {
+  display: none;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  height: 2rem;
+  width: 5rem;
+  border-radius: 4px;
+}
+
+#form-register-next-container {
+  width: 100%;
+  text-align: right;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: end;
+}
+
+#form-register-next {
+  color: white;
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 4px;
+  height: 2rem;
+  width: 5rem;
+}
+
+#form-register-prev {
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  background-color: none;
+  border-radius: 4px;
+  height: 2rem;
+  width: 5rem;
+}
+
+#form-register-prev:hover {
+  background-color: var(--secondary);
+  color: white;
+}
+
+#form-register-next:hover {
+  background-color: var(--secondary-hover);
+  cursor: pointer;
+}
+
+#form-register-next:hover {
+  background-color: var(--secondary-active);
+  cursor: pointer;
+}
+
+#form-register-prev {
+  display: none;
+}
+
+#notif {
+  position: absolute;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  height: 4rem;
+}
+
+.notif-error {
+  background-color: var(--error);
+}
+
+.notif-success {
+  background-color: var(--success);
+}
+
+#notif-message > p {
+  font-size: 0.8rem;
+}
+
+#notif-text {
+  display: flex;
+  align-items: center;
+}
+
+#notif-type {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+#notif > button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: 200ms ease-out;
+}
+
+#notif > button:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+  transition: 200ms ease-in;
+}
+
+#form-pwd-strength {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 12rem;
+}
+
+#form-pwd-strength-container {
+  margin: 1rem 0;
+}
+
+#form-pwd-strength-text {
+  display: flex;
+}
+
+#form-pwd-strength-text > p {
+  margin: 0;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+}
+
+#pwd-label {
+  color: rgb(131, 131, 131);
+}
+
+#pwd-strength {
+  font-weight: bold;
+  color: rgb(236, 57, 57);
+}
+
+.form-pwd-str-item {
+  width: 2rem;
+  height: 0.3rem;
+}
+
+.profile-container {
+  width: 300px;
+  background: rgb(60, 49, 244);
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--secondary) 100%
+  );
+  border-radius: 0 25px 25px 0;
+  color: white;
+  border: none;
+  position: relative;
+}
+
+.user-img {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 35px;
+}
+
+.profile-welcome {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  position: relative;
+  top: 60px;
+}
+
+.profile-welcome > h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.profile-welcome > h2 {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+}
+
+#information-title {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+#first {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+#last {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+#userfirst {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  position: relative;
+  color: gray;
+}
+
+#userlast {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  position: relative;
+  color: gray;
+}
+
+hr {
+  width: 45%;
+  position: relative;
+  margin: 0 auto;
+}
+
+#birthdate {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+#userbirthdate {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  position: relative;
+  color: gray;
+}
+
+#email {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+#useremail {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  position: relative;
+  color: gray;
+}
+
+#contact {
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+#usercontact {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  position: relative;
+  color: gray;
+}
+
+#logout {
+  color: black;
+}
+
+.logout {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+#button {
+  background-color: purple;
+  cursor: pointer;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 25px;
+}
+
+#button:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+#home-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+}
+
+#home-right-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 5rem;
+  flex: 1;
+}
+
+#home-names {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#home-names > div {
+  width: 15rem;
+}
+
+.home-line-breaker {
+  width: 100%;
+  height: 0.2rem;
+  border-radius: 1rem;
+  background-color: black;
+}
+
+#home-bday, #home-email, #home-number {
+  width: 30rem;
+}
+
+.home-right-item {
+  margin-bottom: 2rem;
+}
+
+.weak {
+  background-color: rgb(183, 183, 183);
+}
+
+.moderate {
+  background-color: rgb(255, 210, 63);
+}
+
+.strong {
+  background-color: rgb(119, 226, 69);
+}
+
+#home-logout {
+  background-color: var(--secondary);
+  color: white;
+  height: 2.5rem;
+  width: 6rem;
+  border-radius: 4px;
+  border: none;
+}
+#home-logout:hover {
+  background-color: var(--secondary-hover);
+  cursor: pointer;
+}
+#home-logout:active {
+  background-color: var(--secondary-active);
+}
+
+@media screen and (max-width: 900px) {
   .main-left {
-    width: 100%;
-    background-image: url("assets/stacked-steps-haikei.png");
-    background-size: cover;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .main-left-brand > h1 {
-    font-weight: bold;
-    color: white;
-  }
-  
-  .main-left-message {
-    font-weight: bold;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .main-left-message > h1 {
-    font-size: 4rem;
-    margin-top: 1rem;
-  }
-  
-  .main-left-message > h2 {
-    font-size: 2rem;
-  }
-  
-  .main-left-message > p {
-    width: 20rem;
-    font-size: 0.8rem;
-  }
-  
-  .main-left-message-line {
-    background-color: white;
-    width: 4rem;
-    height: 0.6rem;
-    border-radius: 50px;
-    margin: 1rem 0;
-  }
-  
-  .main-right {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .form-login-container {
-    width: 20rem;
-    display: block;
-  }
-  
-  .form-login-header > h1 {
-    color: var(--secondary);
-  }
-  
-  .form-login-header > p {
-    color: gray;
-    font-size: 0.8rem;
-    margin-top: 0.7rem;
-  }
-  
-  form {
-    margin-top: 3rem;
-  }
-  
-  .form-input-gap {
-    margin: 0.5rem 0;
-  }
-  
-  .form-input {
-    width: 100%;
-    height: 3rem;
-    padding: 0 1rem;
-    border: none;
-    border-left: 5px solid var(--secondary);
-    background-color: hsl(0, 0%, 95%);
-    box-sizing: border-box;
-    color: gray;
-  }
-  
-  .form-submit {
-    width: 100%;
-    height: 2.5rem;
-    margin-top: 2rem;
-    border: none;
-    background-color: var(--secondary);
-    color: white;
-    border-radius: 50px;
-    box-sizing: border-box;
-  }
-  
-  .form-submit:hover {
-    cursor: pointer;
-    background-color: var(--secondary-hover);
-  }
-  
-  .form-submit:active {
-    cursor: pointer;
-    background-color: var(--secondary-active);
-  }
-  
-  footer > p {
-    font-size: 0.8rem;
-    color: white;
-  }
-  
-  .main-link {
-    margin-top: 1rem;
-    text-align: right;
-  }
-  
-  .main-link > button {
-    background: none;
-    border: none;
-    color: var(--primary);
-  }
-  
-  .main-link > button:hover {
-    cursor: pointer;
-    color: var(--secondary-hover);
-  }
-  
-  .main-link > button:active {
-    cursor: pointer;
-    color: var(--secondary-active);
-  }
-  
-  .form-register-container {
     display: none;
-    width: 20rem;
   }
-  
-  .gender-label {
-    font-size: 0.8rem;
-    color: var(--focus-out);
-  }
-  
-  #form-register-gender {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-  }
-  
-  #form-register-gender-inputs {
-    display: flex;
-    align-items: center;
-    margin-left: 2rem;
-  }
-  
-  #form-register-gender-label {   
-    color: var(--secondary);
-    font-size: 0.8rem;
-  }
-  
-  #form-register-info {
-    display: block;
-  }
-  
-  #form-register-names {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  #form-register-names > #form-register-fname {
-    margin-right: 1rem;
-  }
-  
+
   #main-right-brand {
-    display: none;
+    display: block;
   }
   
-  #form-register-pwds {
-    display: none;
+  #home-container {
+    flex-direction: column;
+    height: fit-content;
   }
-  
-  #form-register-submit {
-    display: none;
-    background-color: var(--secondary);
-    color: white;
-    border: none;
-    height: 2rem;
-    width: 5rem;
-    border-radius: 4px;
-  }
-  
-  #form-register-next-container {
+
+  .profile-container {
     width: 100%;
-    text-align: right;
-    margin-top: 1rem;
-    display: flex;
-    justify-content: end;
-  }
-  
-  #form-register-next {
-    color: white;
-    background-color: var(--secondary);
-    border: none;
-    border-radius: 4px;
-    height: 2rem;
-    width: 5rem;
-  }
-  
-  #form-register-prev {
-    color: var(--secondary);
-    border: 2px solid var(--secondary);
-    background-color: none;
-    border-radius: 4px;
-    height: 2rem;
-    width: 5rem;
-  }
-  
-  #form-register-prev:hover {
-    background-color: var(--secondary);
-    color: white;
-  }
-  
-  #form-register-next:hover {
-    background-color: var(--secondary-hover);
-    cursor: pointer;
-  }
-  
-  #form-register-next:hover {
-    background-color: var(--secondary-active);
-    cursor: pointer;
-  }
-  
-  #form-register-prev {
-    display: none;
-  }
-  
-  #notif {
-    position: absolute;
-    top: 0;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: white;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 3rem;
-    height: 4rem;
+    height: 20rem;
+    border-radius: 0 0 24px 24px;
   }
 
-  .notif-error {
-    background-color: var(--error);
+  #home-right-container {
+    padding: 0.7rem;
   }
 
-  .notif-success {
-    background-color: var(--success);
+  #home-names, #home-bday, #home-email, #home-number {
+    width: 100%;
   }
-  
-  #notif-message > p {
-    font-size: 0.8rem;
+
+  .home-right-item {
+    width: 100%;
   }
-  
-  #notif-text {
-    display: flex;
-    align-items: center;
-  }
-  
-  #notif-type {
-    font-weight: bold;
-    margin-right: 1rem;
-  }
-  
-  #notif > button {
-    background: none;
-    border: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: 200ms ease-out;
-  }
-  
-  #notif > button:hover {
-    cursor: pointer;
-    transform: scale(1.5);
-    transition: 200ms ease-in;
-  }
-  
-  @media screen and (max-width: 900px) {
-    .main-left {
-      display: none;
-    }
-  
-    #main-right-brand {
-      display: block;
-    }
-  }
-  
+
+}

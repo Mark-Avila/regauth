@@ -89,6 +89,59 @@ contact = "";
 email = "";
 date = "";
 
+let strengthIndicators = document.getElementsByClassName("form-pwd-str-item");
+let strengthLabel = document.getElementById("pwd-strength");
+
+function passwordStrength() {
+  const passChecks = [
+    "^.*(?=.*?[a-z]).*$",
+    "^.*(?=.*?[A-Z]).*$",
+    "^.*(?=.*?[0-9]).*$",
+    "^.*(?=.*?[#?!@$%^&*-]).*$",
+    "^.{11,}.*$",
+  ];
+
+  let matches = 0;
+
+  passChecks.forEach((item) => {
+    const passRegex = new RegExp(item);
+
+    if (passRegex.test(passwordInput.value)) {
+      matches++;
+    }
+  });
+
+  for (let i = 0; i < strengthIndicators.length; i++) {
+    strengthIndicators[i].classList.remove("weak");
+    strengthIndicators[i].classList.remove("moderate");
+    strengthIndicators[i].classList.remove("strong");
+
+    strengthIndicators[i].classList.add("weak");
+    strengthLabel.innerText = "Weak";
+    strengthLabel.style.color = "red";
+  }
+
+  if (matches >= 4) {
+    strengthIndicators[0].classList.add("strong");
+    strengthIndicators[1].classList.add("strong");
+    strengthIndicators[2].classList.add("strong");
+    strengthIndicators[3].classList.add("strong");
+    strengthIndicators[4].classList.add("strong");
+    strengthLabel.innerText = "Strong";
+    strengthLabel.style.color = "Green";
+  } else if (matches >= 2) {
+    strengthIndicators[0].classList.add("moderate");
+    strengthIndicators[1].classList.add("moderate");
+    strengthIndicators[2].classList.add("moderate");
+    strengthLabel.innerText = "Moderate";
+    strengthLabel.style.color = "Orange";
+  }
+}
+
+document
+  .getElementById("form-register-password")
+  .addEventListener("input", passwordStrength);
+
 document.getElementById("form-register-next").addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -249,7 +302,7 @@ document.getElementById("form-login").addEventListener("submit", (e) => {
 
   const requestBody = toURLEncoded(requestDetails);
 
-  console.log(requestBody)
+  console.log(requestBody);
 
   fetch("http://localhost:8000/api/login", {
     method: "POST",
@@ -302,7 +355,6 @@ document.getElementById("form-register").addEventListener("submit", (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.status === "success") {
         showNotif("success", data.message);
         return showLoginPage();

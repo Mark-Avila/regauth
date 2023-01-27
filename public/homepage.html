@@ -1,13 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="" href="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;family=Roboto:wght@400;700&amp;family=Varela+Round&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
     <title>Home</title>
-</head>
-<body>
-    <p>Test</p>
-</body>
+  </head>
+  <body>
+    <div id="home-container">
+      <div class="profile-container">
+        <div class="user-img">
+          <img
+            src="https://img.icons8.com/bubbles/100/000000/user.png"
+            class="img-radius"
+            alt="Profile-Image"
+          />
+        </div>
+        <div class="profile-welcome">
+          <h1>Welcome</h1>
+          <h2>Name of the user</h2>
+        </div>
+      </div>
+
+      <div id="home-right-container">
+        <h1 id="information-title">
+          Information
+          <div class="home-line-breaker"></div>
+        </h1>
+
+        <div id="home-names" class="home-right-item">
+          <div>
+            <h3 id="first" class="fluid">
+              First Name
+            </h3>
+            <div class="home-line-breaker weak"></div>
+            <p id="userfirst">John Remmon</p>
+          </div>
+          <div>
+            <h3 id="last" class="fluid">Last Name</h3>
+            <div class="home-line-breaker weak"></div>
+            <p id="userlast">Castor</p>
+          </div>
+        </div>
+
+        <div id="home-bday" class="home-right-item">
+            <h3 id="birthdate" class="fluid">
+              Birthdate
+            </h3>
+            <div class="home-line-breaker weak"></div>
+            <p id="userbirthdate">DD/MM/YYYY</p>
+        </div>
+
+        <div id="home-email" class="home-right-item">
+            <h3 id="email" class="fluid">
+              Email Address
+            </h3>
+            <div class="home-line-breaker weak"></div>
+            <p id="useremail">21savageous@gmail.com</p>
+        </div>
+
+        <div id="home-number" class="home-right-item">
+            <h3 id="contact" class="fluid">
+              Contact Number
+            </h3>
+            <div class="home-line-breaker weak"></div>
+            <p id="usercontact">09331220589</p>
+        </div>
+
+        <div class="home-right-item">
+            <button id="home-logout" class="font-varela">
+                LOGOUT
+            </button>
+          </div>
+      </div>
+
+     
+      <!--     
+        <div class="logout">
+          <button id="button">Logout</button>
+        </div> -->
+    </div>
+  </body>
 </html>
