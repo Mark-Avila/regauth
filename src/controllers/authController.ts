@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 const lev = require("fast-levenshtein");
 
-type UsersRequest = Request<{}, {}, IAccount>;
+type UsersRequest = Request<{ email: string }, {}, IAccount>;
 
 interface FormInputs {
   fname: string;
@@ -66,8 +66,8 @@ const validatePassword = (password: string, inputs: FormInputs): string[] => {
   const modBday = bday.replace(/-/g, "|");
 
   const regexList: IRegexList = {
-    "First name": `^((?!${fname.toLocaleLowerCase().replace(" ", "")}).)*$`,
-    "Last name": `^((?!${lname.toLocaleLowerCase().replace(" ", "")}).)*$`,
+    "First name": `^((?!${fname.toLocaleLowerCase().replace(" ", "|")}).)*$`,
+    "Last name": `^((?!${lname.toLocaleLowerCase().replace(" ", "|")}).)*$`,
     Email: `^((?!${modEmail.toLocaleLowerCase()}).)*$`,
     Birthday: modBday,
     Contact: modContact,
@@ -144,7 +144,7 @@ export const registerUser = asyncHandler(
 
     if (isPassValid) {
       res.status(400);
-      throw Error(`Password must have ${passCharsCheck}`);
+      throw Error(`Password is to weak. It must have ${passCharsCheck}`);
     }
 
     if (!validateEmail(email)) {
@@ -215,10 +215,26 @@ export const loginUser = asyncHandler(
         status: "success",
         code: 200,
         message: `Successfully logged in with user ${user.fname} ${user.lname}`,
+        data: user,
       });
     } else {
       res.status(400);
       throw Error("Invalid credentials");
+    }
+  }
+);
+
+export const getUser = asyncHandler(
+  async (req: UsersRequest, res: Response) => {
+    const { email } = req.query;
+
+    const user = await Account.findOne({ email });
+
+    if (user) {
+      res.status(200);
+    } else {
+      res.status(404);
+      throw Error("User not found");
     }
   }
 );

@@ -238,6 +238,16 @@ footer > p {
   border-radius: 4px;
 }
 
+#form-register-submit:hover {
+  cursor: pointer;
+  background-color: var(--secondary-hover);
+}
+
+#form-register-submit:active {
+  cursor: pointer;
+  background-color: var(--secondary-active);
+}
+
 #form-register-next-container {
   width: 100%;
   text-align: right;

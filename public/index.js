@@ -302,22 +302,21 @@ document.getElementById("form-login").addEventListener("submit", (e) => {
 
   const requestBody = toURLEncoded(requestDetails);
 
-  console.log(requestBody);
-
-  fetch("http://localhost:8000/api/login", {
+  fetch(location.pathname + "api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: requestBody,
   })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.status === "success") {
-        showNotif("success", data.message);
-        window.location.href = "homepage.html";
-      } else if (data.status === "failed") {
-        showNotif("error", data.message);
+    .then((raw) => raw.json())
+    .then((response) => {
+      if (response.status === "success") {
+        showNotif("success", response.message);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        location.href += "user";
+      } else if (response.status === "failed") {
+        showNotif("error", response.message);
       }
     })
     .catch((error) => console.log(error));
@@ -346,7 +345,7 @@ document.getElementById("form-register").addEventListener("submit", (e) => {
 
   requestBody = toURLEncoded(requestDetails);
 
-  fetch("http://localhost:8000/api/register", {
+  fetch(location.pathname + "api/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
