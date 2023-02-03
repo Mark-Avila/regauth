@@ -24,20 +24,20 @@ interface IRegexList {
 }
 
 interface IPassChecks {
-  "one upper case letter": "^(?=.*?[A-Z])$";
-  "one lower case letter": "^(?=.*?[a-z])$";
-  "one digit character": "^(?=.*?[0-9])$";
-  "one special character": "^(?=.*?[#?!@$%^&*-])$";
-  "minimum of 8 characters": "^(?=.*?[#?!@$%^&*-])$";
+  "one upper case letter": string;
+  "one lower case letter": string;
+  "one digit character": string;
+  "one special character": string;
+  "minimum of 8 characters": string;
 }
 
 const validatePasswordChars = (password: string): string => {
-  const passChecks = {
-    "one lower case letter": "^.*(?=.*?[a-z]).*$",
-    "one upper case letter": "^.*(?=.*?[A-Z]).*$",
-    "one digit character": "^.*(?=.*?[0-9]).*$",
-    "one special character": "^.*(?=.*?[#?!@$%^&*-]).*$",
-    "minimum of 8 characters": "^.{8,}.*$",
+  const passChecks: IPassChecks = {
+    "one lower case letter": "[a-z]",
+    "one upper case letter": "[A-Z]",
+    "one digit character": "[0-9]",
+    "one special character": "[#?!@&*-]",
+    "minimum of 8 characters": ".{8,}.*",
   };
 
   const passCheckKeys = Object.keys(passChecks);
@@ -47,7 +47,7 @@ const validatePasswordChars = (password: string): string => {
     const regexCheck = new RegExp(passChecks[key as keyof IPassChecks]);
 
     if (returnString.length === 0) {
-      if (!regexCheck.test(password) === true) {
+      if (!regexCheck.test(password)) {
         returnString = key;
       }
     }
@@ -66,9 +66,9 @@ const validatePassword = (password: string, inputs: FormInputs): string[] => {
   const modBday = bday.replace(/-/g, "|");
 
   const regexList: IRegexList = {
-    "First name": `^((?!${fname.toLocaleLowerCase().replace(" ", "|")}).)*$`,
-    "Last name": `^((?!${lname.toLocaleLowerCase().replace(" ", "|")}).)*$`,
-    Email: `^((?!${modEmail.toLocaleLowerCase()}).)*$`,
+    "First name": fname.toLocaleLowerCase().replace(" ", "|"),
+    "Last name": lname.toLocaleLowerCase().replace(" ", "|"),
+    Email: modEmail.toLocaleLowerCase(),
     Birthday: modBday,
     Contact: modContact,
   };
@@ -80,11 +80,7 @@ const validatePassword = (password: string, inputs: FormInputs): string[] => {
 
     let strPassword = password.toString().toLocaleLowerCase();
 
-    if (key === "Contact") {
-      if (regexCheck.test(strPassword)) {
-        matches.push(key);
-      }
-    } else if (key === "Birthday") {
+    if (key === "Birthday") {
       const bdayMatches =
         (strPassword || "").match(
           RegExp(regexList[key as keyof IRegexList], "g")
@@ -93,7 +89,7 @@ const validatePassword = (password: string, inputs: FormInputs): string[] => {
       if (bdayMatches.length >= 2) {
         matches.push(key);
       }
-    } else if (!regexCheck.test(strPassword)) {
+    } else if (regexCheck.test(strPassword)) {
       matches.push(key);
     }
   });

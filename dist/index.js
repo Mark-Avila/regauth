@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./config/db"));
 const authRoute_1 = require("./routes/authRoute");
 const errorMiddleware_1 = __importDefault(require("./middleware/errorMiddleware"));
+const path_1 = __importDefault(require("path"));
 const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 const app = (0, express_1.default)();
@@ -23,6 +24,9 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use("/api", authRoute_1.authRouter);
 app.use(errorMiddleware_1.default);
+app.get("/user", (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, "../public/home.html"));
+});
 app.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`);
 });

@@ -12,11 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = exports.registerUser = void 0;
+exports.getUser = exports.loginUser = exports.registerUser = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const authModel_1 = __importDefault(require("../models/authModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const lev = require("fast-levenshtein");
+const validatePasswordChars = (password) => {
+    const passChecks = {
+        "one lower case letter": "[a-z]",
+        "one upper case letter": "[A-Z]",
+        "one digit character": "[0-9]",
+        "one special character": "[#?!@&*-]",
+        "minimum of 8 characters": ".{8,}.*",
+    };
+    const passCheckKeys = Object.keys(passChecks);
+    let returnString = "";
+    passCheckKeys.forEach((key) => {
+        const regexCheck = new RegExp(passChecks[key]);
+        if (returnString.length === 0) {
+            if (!regexCheck.test(password)) {
+                returnString = key;
+            }
+        }
+    });
+    return returnString;
+};
 const validatePassword = (password, inputs) => {
     const { fname, lname, email, bday, contact } = inputs;
     const modEmail = email.replace(/@.*$/, "");
@@ -24,9 +44,9 @@ const validatePassword = (password, inputs) => {
     const modContact = contact.replace(/-/g, "|");
     const modBday = bday.replace(/-/g, "|");
     const regexList = {
-        "First name": `^((?!${fname.toLocaleLowerCase().replace(" ", "")}).)*$`,
-        "Last name": `^((?!${lname.toLocaleLowerCase().replace(" ", "")}).)*$`,
-        Email: `^((?!${modEmail.toLocaleLowerCase()}).)*$`,
+        "First name": fname.toLocaleLowerCase().replace(" ", "|"),
+        "Last name": lname.toLocaleLowerCase().replace(" ", "|"),
+        Email: modEmail.toLocaleLowerCase(),
         Birthday: modBday,
         Contact: modContact,
     };
@@ -34,18 +54,13 @@ const validatePassword = (password, inputs) => {
     listKeys.forEach((key) => {
         const regexCheck = new RegExp(regexList[key]);
         let strPassword = password.toString().toLocaleLowerCase();
-        if (key === "Contact") {
-            if (regexCheck.test(strPassword)) {
-                matches.push(key);
-            }
-        }
-        else if (key === "Birthday") {
+        if (key === "Birthday") {
             const bdayMatches = (strPassword || "").match(RegExp(regexList[key], "g")) || [];
             if (bdayMatches.length >= 2) {
                 matches.push(key);
             }
         }
-        else if (!regexCheck.test(strPassword)) {
+        else if (regexCheck.test(strPassword)) {
             matches.push(key);
         }
     });
@@ -74,9 +89,15 @@ exports.registerUser = (0, express_async_handler_1.default)((req, res) => __awai
         }
     });
     const { fname, lname, contact, bday, email, password } = data;
+    const passCharsCheck = validatePasswordChars(password);
+    const isPassValid = passCharsCheck.length > 0;
     if (yield authModel_1.default.findOne({ email })) {
         res.status(400);
         throw Error("User already exists");
+    }
+    if (isPassValid) {
+        res.status(400);
+        throw Error(`Password is to weak. It must have ${passCharsCheck}`);
     }
     if (!validateEmail(email)) {
         res.status(400);
@@ -131,10 +152,22 @@ exports.loginUser = (0, express_async_handler_1.default)((req, res) => __awaiter
             status: "success",
             code: 200,
             message: `Successfully logged in with user ${user.fname} ${user.lname}`,
+            data: user,
         });
     }
     else {
         res.status(400);
         throw Error("Invalid credentials");
+    }
+}));
+exports.getUser = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.query;
+    const user = yield authModel_1.default.findOne({ email });
+    if (user) {
+        res.status(200);
+    }
+    else {
+        res.status(404);
+        throw Error("User not found");
     }
 }));
